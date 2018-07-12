@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="DB.action.MySQLAction">
+
+
+	<select id="FetchAPIDetail" resultType="java.util.HashMap">
+		select * from t_api;
+	</select>
+	
+
+	<select id="RetrieveCategory" parameterType="java.util.Map" resultType="java.util.HashMap" statementType="CALLABLE">
+		call RetrieveCategory(
+			#{retrieve_type, jdbcType=INTEGER, mode=IN},
+			#{p_category_id, jdbcType=VARCHAR, mode=IN},
+			#{p_category_point, jdbcType=VARCHAR, mode=IN},
+			#{p_category_type, jdbcType=VARCHAR, mode=IN}
+		)
+	</select>
+
+	<select id="RetrieveLoopAD" parameterType="java.util.Map" resultType="java.util.HashMap" statementType="CALLABLE">
+		call RetrieveLoopAD(
+			#{retrieve_type, jdbcType=INTEGER, mode=IN},
+			#{p_loop_point, jdbcType=VARCHAR, mode=IN},
+			#{p_loop_id, jdbcType=VARCHAR, mode=IN}
+		)
+	</select>
+
+	<select id="RetrievePromotionProduct" parameterType="java.util.Map" resultType="java.util.HashMap" statementType="CALLABLE">
+		call RetrievePromotionProduct(
+			#{retrieve_type, jdbcType=INTEGER, mode=IN},
+			#{p_promotion_point, jdbcType=VARCHAR, mode=IN},
+			#{p_promotion_id, jdbcType=VARCHAR, mode=IN}
+		)
+	</select>
+
+	<select id="RetrieveSiteNews" parameterType="java.util.Map" resultType="java.util.HashMap" statementType="CALLABLE">
+		call RetrieveSiteNews(
+			#{retrieve_type, jdbcType=INTEGER, mode=IN},
+			#{p_news_point, jdbcType=VARCHAR, mode=IN},
+			#{p_news_id, jdbcType=VARCHAR, mode=IN}
+		)
+	</select>
+
+	<select id="RetrieveSuggestBrand" parameterType="java.util.Map" resultType="java.util.HashMap" statementType="CALLABLE">
+		call RetrieveSuggestBrand(
+			#{retrieve_type, jdbcType=INTEGER, mode=IN},
+			#{p_brand_point, jdbcType=VARCHAR, mode=IN},
+			#{p_brand_id, jdbcType=VARCHAR, mode=IN}
+		)
+	</select>
+
+	<select id="RetrieveSuggestProduct" parameterType="java.util.Map" resultType="java.util.HashMap" statementType="CALLABLE">
+		call RetrieveSuggestProduct(
+			#{retrieve_type, jdbcType=INTEGER, mode=IN},
+			#{p_promotion_point, jdbcType=VARCHAR, mode=IN},
+			#{p_promotion_id, jdbcType=VARCHAR, mode=IN}
+		)
+	</select>
+	
+	<select id="InsertUserRegistInfo" parameterType="java.util.Map" statementType="CALLABLE">
+		call InsertUserRegistInfo(
+			#{p_user_account, jdbcType=VARCHAR, mode=IN},
+			#{p_user_password, jdbcType=VARCHAR, mode=IN},
+			#{p_parent_user_id, jdbcType=VARCHAR, mode=IN},
+			#{p_regist_channel, jdbcType=VARCHAR, mode=IN}
+		)
+	</select>
+	
+	<select id="ModifyUserPassword" parameterType="java.util.Map" resultType="java.util.HashMap" statementType="CALLABLE">
+		call ModifyUserPassword(
+			#{p_useraccount, jdbcType=VARCHAR, mode=IN},
+			#{p_userpassword_old, jdbcType=VARCHAR, mode=IN},
+			#{p_userpassword_new, jdbcType=VARCHAR, mode=IN}
+		)
+	</select>
+	
+	<select id="RetrieveUserLoginValidate" parameterType="java.util.Map" resultType="java.util.HashMap" statementType="CALLABLE">
+		call RetrieveUserLoginValidate(
+			#{p_useraccount, jdbcType=VARCHAR, mode=IN},
+			#{p_userpassword, jdbcType=VARCHAR, mode=IN},
+			#{p_login_device, jdbcType=VARCHAR, mode=IN}
+		)
+	</select>
+	
+</mapper>
